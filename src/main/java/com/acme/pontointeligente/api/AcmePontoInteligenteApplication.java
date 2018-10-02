@@ -1,4 +1,4 @@
-package com.acme.pontointeligente.api.AcmePontoInteligente;
+package com.acme.pontointeligente.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
