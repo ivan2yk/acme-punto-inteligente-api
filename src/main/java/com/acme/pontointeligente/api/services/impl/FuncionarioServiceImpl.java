@@ -33,12 +33,12 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
     @Override
     public Optional<Funcionario> buscarPorCpf(String cpf) {
-        return Optional.of(funcionarioRepository.findByCpf(cpf));
+        return Optional.ofNullable(funcionarioRepository.findByCpf(cpf));
     }
 
     @Override
     public Optional<Funcionario> buscarPorEmail(String email) {
-        return Optional.of(funcionarioRepository.findByEmail(email));
+        return Optional.ofNullable(funcionarioRepository.findByEmail(email));
     }
 
     @Override
