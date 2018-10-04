@@ -38,7 +38,7 @@ public class EmpresaControllerTest {
     private EmpresaService empresaService;
 
     private static final String BUSCAR_EMPRESA_URL = "/api/empresas/cnpj/";
-    private static final Long ID = Long.valueOf(1);
+    private static final Long ID = 1L;
     private static final String CNPJ = "20377339461";
     private static final String RAZON_SOCIAL = "Empresa XYZ";
 
