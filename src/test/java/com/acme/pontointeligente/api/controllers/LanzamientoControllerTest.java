@@ -124,13 +124,23 @@ public class LanzamientoControllerTest {
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser(username = "admin@admin.com", roles = {"ADMIN"})
     public void remover() throws Exception {
         given(lanzamientoService.buscarPorId(anyLong())).willReturn(Optional.of(new Lanzamiento()));
 
         this.mvc.perform(MockMvcRequestBuilders.delete(URL_BASE + "/" + ID_LANZAMIENTO)
                 .with(SecurityMockMvcRequestPostProcessors.csrf()))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser(username = "vendor@acme.com", roles = {"VENDOR"})
+    public void remover_Should_Return_Forbidden() throws Exception {
+        given(lanzamientoService.buscarPorId(anyLong())).willReturn(Optional.of(new Lanzamiento()));
+
+        this.mvc.perform(MockMvcRequestBuilders.delete(URL_BASE + "/" + ID_LANZAMIENTO)
+                .with(SecurityMockMvcRequestPostProcessors.csrf()))
+                .andExpect(status().isForbidden());
     }
 
     private String getJsonToPost() throws JsonProcessingException {
