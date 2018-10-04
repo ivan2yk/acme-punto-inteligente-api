@@ -6,6 +6,8 @@ import com.acme.pontointeligente.api.services.LanzamientoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -34,11 +36,14 @@ public class LanzamientoServiceImpl implements LanzamientoService {
     }
 
     @Override
+    @Cacheable("lanzamientoPorId")
     public Optional<Lanzamiento> buscarPorId(Long id) {
+        logger.info("---buscarPorId: {}", id);
         return lanzamientoRepository.findById(id);
     }
 
     @Override
+    @CachePut("lanzamientoPorId")
     public Lanzamiento persistir(Lanzamiento lanzamiento) {
         return lanzamientoRepository.save(lanzamiento);
     }
