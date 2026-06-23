@@ -1,22 +1,22 @@
 package com.acme.pontointeligente.api.repositories;
 
 import com.acme.pontointeligente.api.entities.Empresa;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * Created by Ivan on 1/10/2018.
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
 public class EmpresaRepositoryTests {
@@ -26,7 +26,7 @@ public class EmpresaRepositoryTests {
 
     private static final String CNPJ = "51463645000100";
 
-    @Before
+    @BeforeEach
     public void setUp() {
         Empresa empresa = new Empresa();
         empresa.setRazonSocial("Empresa Ejemplo");
@@ -34,7 +34,7 @@ public class EmpresaRepositoryTests {
         this.empresaRepository.save(empresa);
     }
 
-    @After
+    @AfterEach
     public final void tearDown() {
         this.empresaRepository.deleteAll();
     }

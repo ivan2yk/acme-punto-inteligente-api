@@ -3,28 +3,26 @@ package com.acme.pontointeligente.api.services;
 import com.acme.pontointeligente.api.entities.Empresa;
 import com.acme.pontointeligente.api.repositories.EmpresaRepository;
 import com.acme.pontointeligente.api.services.impl.EmpresaServiceImpl;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 /**
  * Created by Ivan on 2/10/2018.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@ActiveProfiles("test")
+@ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 public class EmpresaServiceTests {
 
     @Mock
@@ -34,9 +32,8 @@ public class EmpresaServiceTests {
 
     private static final String CNPJ = "9876543210";
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         empresaService = new EmpresaServiceImpl(empresaRepository);
 
         when(empresaRepository.findByCnpj(anyString())).thenReturn(new Empresa());

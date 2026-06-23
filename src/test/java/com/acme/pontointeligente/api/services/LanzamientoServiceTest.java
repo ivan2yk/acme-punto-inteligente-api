@@ -2,9 +2,9 @@ package com.acme.pontointeligente.api.services;
 
 import com.acme.pontointeligente.api.entities.Lanzamiento;
 import com.acme.pontointeligente.api.repositories.LanzamientoRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,18 +13,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 
 /**
  * Created by Ivan on 2/10/2018.
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
 public class LanzamientoServiceTest {
@@ -35,7 +35,7 @@ public class LanzamientoServiceTest {
     @Autowired
     private LanzamientoService lanzamientoService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         given(lanzamientoRepository.findByFuncionarioId(Mockito.anyLong(), Mockito.any(PageRequest.class)))
                 .willReturn(new PageImpl<>(new ArrayList<>()));

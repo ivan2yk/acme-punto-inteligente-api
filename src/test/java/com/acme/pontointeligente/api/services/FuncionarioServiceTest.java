@@ -2,20 +2,20 @@ package com.acme.pontointeligente.api.services;
 
 import com.acme.pontointeligente.api.entities.Funcionario;
 import com.acme.pontointeligente.api.repositories.FuncionarioRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by Ivan on 2/10/2018.
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
 public class FuncionarioServiceTest {
@@ -35,7 +35,7 @@ public class FuncionarioServiceTest {
     @Autowired
     private FuncionarioService funcionarioService;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         Funcionario funcionario = new Funcionario();
         given(funcionarioRepository.save(any(Funcionario.class))).willReturn(funcionario);
